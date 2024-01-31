@@ -13,6 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
+    "propercase": "^1.0.2"
+  },
+  "devDependencies": {
     "nodemon": "^3.0.3"
   }
 }
