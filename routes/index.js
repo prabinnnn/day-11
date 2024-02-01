@@ -38,7 +38,29 @@ router.patch("/data", async (req, res, next) => {
   try {
     const { data } = req.body;
     console.log(data);
-    const result = await blogcontroller.create(data);
+    const result = await blogcontroller.findOne(data);
+    if (!data) throw new error("something is missing");
+    res.json(`${result}`);
+  } catch (e) {
+    next(e);
+  }
+});
+router.patch("/data", async (req, res, next) => {
+  try {
+    const { data } = req.body;
+    console.log(data);
+    const result = await blogcontroller.updateOne(data);
+    if (!data) throw new error("something is missing");
+    res.json(`${result}`);
+  } catch (e) {
+    next(e);
+  }
+});
+router.post("/data", async (req, res, next) => {
+  try {
+    const { data } = req.body;
+    console.log(data);
+    const result = await blogcontroller.deleteOne(data);
     if (!data) throw new error("something is missing");
     res.json(`${result}`);
   } catch (e) {

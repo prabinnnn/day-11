@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const indexofrouter = require("./routes");
 app.use("/", indexofrouter);
-mongoose.connect("mongodb://localhost:27017/username").then(() => {
+mongoose.connect("mongodb://localhost:27017/blog-app").then(() => {
   console.log("database is connected");
 });
 app.use((res, next, err, req) => {
