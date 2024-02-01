@@ -2,18 +2,45 @@ const router = require("express").Router();
 const { error } = require("console");
 const usernamerouter = require("../module/username/username.route");
 const userindex = "/ap1/v1";
-router.get("/", (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
-    res.json({ msg: "hello from prabin" });
+    const { data } = req.body;
+    console.log(data);
+    const result = await blogcontroller.find(data);
+    res.json(`${data}`);
   } catch (e) {
     next(e);
   }
 });
-router.post("/id", (req, res, next) => {
+router.post("/data", async (req, res, next) => {
   try {
-    const { id } = req.body;
-    if (!id) throw new error("something is missing");
-    res.json({ msg: "hello from user" });
+    const { data } = req.body;
+    console.log(data);
+    const result = await blogcontroller.create(data);
+    if (!data) throw new error("something is missing");
+    res.json(`${result}`);
+  } catch (e) {
+    next(e);
+  }
+});
+router.put("/data", async (req, res, next) => {
+  try {
+    const { data } = req.body;
+    console.log(data);
+    const result = await blogcontroller.updateOne(data);
+    if (!data) throw new error("something is missing");
+    res.json(`${result}`);
+  } catch (e) {
+    next(e);
+  }
+});
+router.patch("/data", async (req, res, next) => {
+  try {
+    const { data } = req.body;
+    console.log(data);
+    const result = await blogcontroller.create(data);
+    if (!data) throw new error("something is missing");
+    res.json(`${result}`);
   } catch (e) {
     next(e);
   }
